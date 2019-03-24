@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Embedded - Modul 1</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand" href="../index.html#">L200160183</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#embedded">Embedded System</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#biometrics">Biometrics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#comvis">Computer Vision</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="jumbotron bg-info text-light" style="height: 700px;" id="#">
+        <div class="container" style="margin-top: 300px">
+            <h1 style="font-size: 80px;">Embedded System</h1>
+            <hr>
+            <h2>Modul 1 (Praktikum)</h2>
+            <h2>L200160183</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="text-info">Alat yang diperlukan</h1>
+        <hr>
+        <ul>
+            <li>Board Arduino</li>
+            <li>LED</li>
+            <li>Resistor 220 Ohm</li>
+            <li>Breadboard</li>
+        </ul>
+
+        <h1 class="text-info">Tugas 1</h1>
+        <hr>
+        <div class="container">
+            <h3 class="text-info">Tujuan</h3>
+            <p>Membuat Animasi sederhana menggunakan 5 buah LED.</p>
+            <br>
+
+            <h3 class="text-info">Kode Program</h3>
+            <pre class="bg-light container">
+                <code>
+int timer = 100;
+int ledPins [] = {
+    13, 12, 8, 7, 4
+};
+int pinCount = 5;
+void setup() {
+    // put your setup code here, to run once:
+    for (int thisPin = 0; thisPin < pinCount; thisPin++){
+    pinMode(ledPins[thisPin], OUTPUT);
+    }
+}
+
+void loop() {
+    // put your main code here, to run repeatedly:
+    for (int thisPin = 0; thisPin < pinCount; thisPin++) {
+    // turn the pin on:
+    digitalWrite(ledPins[thisPin], HIGH);
+    digitalWrite(ledPins[thisPin+1], HIGH);
+    delay(timer);
+    // turn the pin off:
+    digitalWrite(ledPins[thisPin], LOW);
+    digitalWrite(ledPins[thisPin+1], LOW);
+
+    }
+
+    // loop from the highest pin to the lowest:
+    for (int thisPin = pinCount - 1; thisPin >= 0; thisPin--) {
+    // turn the pin on:
+    digitalWrite(ledPins[thisPin], HIGH);
+    digitalWrite(ledPins[thisPin+1], HIGH);
+    delay(timer);
+    // turn the pin off:
+    digitalWrite(ledPins[thisPin], LOW);
+    digitalWrite(ledPins[thisPin+1], LOW);
+    }
+}
+                        
+                </code>
+            </pre>
+        </div>
+        <br>
+
+        <h3 class="text-info">Gambar Dokumentasi</h3>
+        <br>
+        <div class="container">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="img/m1_t1.jpg" class="d-block w-100 bg-secondary" alt="Percobaan Awal_0"
+                            style="height: 500px; object-fit: scale-down">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- TUGAS -->
+        <br><br>
+        <h1 class="text-info">Tugas 2</h1>
+        <hr>
+        <div class="container">
+            <h3 class="text-info">Tujuan</h3>
+            <p>Memodifikasi program sehingga ketika switch ditekan 2 LED menyala dan 3 LED mati, ketika switch dilepas
+                (tidak ditekan) 2 LED mati dan 3 LED menyala.</p>
+            <br>
+
+            <h3 class="text-info">Kode Program</h3>
+            <pre class="bg-light container">
+                <code>
+const int buttonPin = 2;
+int buttonState = 0;
+int ledPins [] = {
+    13, 12, 8, 7, 4
+};
+                
+void setup() {
+    for (int thisPin = 0; thisPin < pinCount; thisPin++){
+        pinMode(ledPins[thisPin], OUTPUT);
+    }
+    pinMode(buttonS, INPUT);
+}
+                
+void loop() {
+    buttonState = digitalRead(buttonS);
+    if(buttonState == HIGH){
+        digitalWrite(13, LOW);
+        digitalWrite(12, LOW);
+        digitalWrite(8, LOW);
+        digitalWrite(7, HIGH);
+        digitalWrite(4, HIGH);
+    }else{
+        digitalWrite(13, HIGH);
+        digitalWrite(12, HIGH);
+        digitalWrite(8, HIGH);
+        digitalWrite(7, LOW);
+        digitalWrite(4, LOW);
+    }
+}
+                </code>
+            </pre>
+        </div>
+        <br>
+
+        <!-- <h3 class="text-info">Gambar Dokumentasi</h3>
+        <br>
+        <div class="container">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="img/m2_t2.jpg" class="d-block w-100 bg-secondary" alt="Percobaan Awal_0"
+                            style="height: 500px; object-fit: scale-down">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div> -->
+        <br>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
