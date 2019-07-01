@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 
 <head>
-    <title>L200160183</title>
+    <title>Embedded - UAS</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
     <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
-        <a class="navbar-brand" href="../">L200160183</a>
+        <a class="navbar-brand" href="../index.html#">L200160183</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -16,140 +16,157 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="../index.html#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#embedded">Embedded System</a>
+                    <a class="nav-link" href="../index.html#embedded">Embedded System</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#biometrics">Biometrics</a>
+                    <a class="nav-link" href="../index.html#biometrics">Biometrics</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#comvis">Computer Vision</a>
+                    <a class="nav-link" href="../index.html#comvis">Computer Vision</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="jumbotron bg-info text-light" style="height: 100vh;" id="#">
+    <div class="jumbotron bg-info text-light" style="height: 700px;" id="#">
         <div class="container" style="margin-top: 300px">
-            <h1 style="font-size: 80px;">Hello World</h1>
+            <h1 style="font-size: 80px;">Embedded System</h1>
             <hr>
+            <h2>UAS (Praktikum)</h2>
             <h2>L200160183</h2>
         </div>
     </div>
 
-    <!-- embedded -->
-    <br id="embedded">
-    <div>
-        <div class="container" style="margin-top: 80px; margin-bottom: 80px;">
-            <h1 class="text-info">Embedded System</h1>
-            <hr>
+    <div class="container">
+        <h1 class="text-info">Alat yang diperlukan</h1>
+        <hr>
+        <ul>
+            <li>Raspberry Pi 3 Model B</li>
+            <li>MicroSD 16GB berisi image OS</li>
+            <li>Kabel jumper</li>
+            <li>Breadboard</li>
+            <li>2 buah resistor 220Ohm</li>
+            <li>Sensor Ultrasonic</li>
+        </ul>
+
+        <h1 class="text-info">Percobaan Awal</h1>
+        <hr>
+        <div class="container">
+            <h3 class="text-info">Capaian</h3>
+            <ol>
+                <li>Dapat menkonfigurasi operasi sistem pada raspberry pi</li>
+                <li>Mampu membuat aplikasi raspberry pi sederhana dengan menggunakan bahasa python.</li>
+            </ol>
             <br>
-            <!-- embedded modul 1 -->
-            <div class="row no-gutters bg-light position-relative">
-                <div class="col-md-6 mb-md-0 p-md-4">
-                    <img src="embedded/img/m1_t1.jpg" class="w-100 rounded-lg" alt="..." style="object-fit: cover; height: 250px;">
+
+            <h3 class="text-info">Kode Program</h3>
+            <pre class="bg-light container">
+                <code>
+#Libraries
+import RPi.GPIO as GPIO
+import time
+    
+#GPIO Mode (BOARD / BCM)
+GPIO.setmode(GPIO.BCM)
+    
+#set GPIO Pins
+GPIO_TRIGGER = 4
+GPIO_ECHO = 17
+    
+#set GPIO direction (IN / OUT)
+GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
+GPIO.setup(GPIO_ECHO, GPIO.IN)
+    
+def distance():
+    # set Trigger to HIGH
+    GPIO.output(GPIO_TRIGGER, True)
+    
+    # set Trigger after 0.01ms to LOW
+    time.sleep(0.00001)
+    GPIO.output(GPIO_TRIGGER, False)
+    
+    StartTime = time.time()
+    StopTime = time.time()
+    
+    # save StartTime
+    while GPIO.input(GPIO_ECHO) == 0:
+        StartTime = time.time()
+    
+    # save time of arrival
+    while GPIO.input(GPIO_ECHO) == 1:
+        StopTime = time.time()
+    
+    # time difference between start and arrival
+    TimeElapsed = StopTime - StartTime
+    # multiply with the sonic speed (34300 cm/s)
+    # and divide by 2, because there and back
+    distance = (TimeElapsed * 34300) / 2
+    
+    return distance
+    
+if __name__ == '__main__':
+    try:
+        while True:
+            dist = distance()
+            print ("Measured Distance = %.1f cm" % dist)
+            time.sleep(1)
+    
+        # Reset by pressing CTRL + C
+    except KeyboardInterrupt:
+        print("Measurement stopped by User")
+        GPIO.cleanup()
+                </code>
+            </pre>
+        </div>
+        <br>
+
+        <h3 class="text-info">Gambar Dokumentasi</h3>
+        <br>
+        <div class="container">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="img/IMG_20190701_134217.jpg" class="d-block w-100 bg-secondary"
+                            alt="Rangkaian pada Raspberry Pi [0]" style="height: 500px; object-fit: scale-down">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/IMG_20190701_134416.jpg" class="d-block w-100 bg-secondary"
+                            alt="Rangkaian pada Raspberry Pi [1]" style="height: 500px; object-fit: scale-down">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/ss_screen.png" class="d-block w-100 bg-secondary"
+                            alt="Screenshot saat program dijalankan di python RPi melalui SSH"
+                            style="height: 500px; object-fit: scale-down">
+                    </div>
                 </div>
-                <div class="col-md-6 position-static p-4 pl-md-0">
-                    <h4 class="mt-0" id="#embedded1">Modul 1</h4>
-                    <p>Tugas Modul 1, Input output data digital. Memodifikasi program blink led, animasi led, control
-                        led dengan switch.</p>
-                    <a href="embedded/modul1.html" class="stretched-link">details</a>
-                </div>
-            </div>
-            <br>
-            <!-- embedded modul 2 -->
-            <div class="row no-gutters bg-light position-relative">
-                <div class="col-md-6 mb-md-0 p-md-4">
-                    <img src="embedded/img/m2_t2.jpg" class="w-100 rounded-lg" alt="..."
-                        style="object-fit: cover; height: 250px;">
-                </div>
-                <div class="col-md-6 position-static p-4 pl-md-0">
-                    <h4 class="mt-0">Modul 2</h4>
-                    <p>Tugas Modul 2, Input dan Output Analog. Membuat led indikator posisi potensiometer, mengatur
-                        tingkat kecerahan led(PWM) dengan potensiometer.</p>
-                    <a href="embedded/modul2.html" class="stretched-link">details</a>
-                </div>
-            </div>
-            <br>
-            <!-- embedded modul 3 -->
-            <div class="row no-gutters bg-light position-relative">
-                <div class="col-md-6 mb-md-0 p-md-4">
-                    <img src="embedded/img/m3_c1_1.jpg" class="w-100 rounded-lg" alt="..."
-                        style="object-fit: cover; height: 250px;">
-                </div>
-                <div class="col-md-6 position-static p-4 pl-md-0">
-                    <h4 class="mt-0">Modul 3</h4>
-                    <p>Tugas Modul 3, Display 7-segment. Membuat 7-segment dapat menampilkan angka sesuai dengan putaran
-                        potensiometer.</p>
-                    <a href="embedded/modul3.html" class="stretched-link">details</a>
-                </div>
-            </div>
-            <br>
-            <!-- embedded modul 4 -->
-            <div class="row no-gutters bg-light position-relative">
-                <div class="col-md-6 mb-md-0 p-md-4">
-                    <img src="embedded/img/m4_t1_0.jpg" class="w-100 rounded-lg" alt="..."
-                        style="object-fit: cover; height: 250px;">
-                </div>
-                <div class="col-md-6 position-static p-4 pl-md-0">
-                    <h4 class="mt-0">Modul 4</h4>
-                    <p>Tugas Modul 4, Membaca Sensor LDR. Menggunakan 7-segment sebagai indikator intensitas cahaya
-                        sederhana, dengan LDR sebagai sensornya.</p>
-                    <a href="embedded/modul4.html" class="stretched-link">details</a>
-                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
         </div>
+        <br><br>
+
+        <h3 class="text-info">Video Dokumentasi</h3>
+        <br>
+        <center>
+            <video controls="" style="width: 100vw">
+                <source src="vid/VID_20190701_134327.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </center>
     </div>
-
-    <!-- biometrics -->
-    <br id="biometrics">
-    <div>
-        <div class="container" style="margin-top: 80px; margin-bottom: 80px;">
-            <h1 class="text-info">Biometrics</h1>
-            <hr>
-            <br>
-            <!-- tugas biometrics 1 -->
-            <div class="row no-gutters bg-light position-relative">
-                <div class="col-md-6 mb-md-0 p-md-4">
-                    <img src="fingerprint/img/IMG_poincare_enhanced_thinned_minutiae.gif" class="w-100 rounded-lg" alt="comvis_tugas_1"
-                    style="object-fit: cover; height: 250px;">
-                </div>
-                <div class="col-md-6 position-static p-4 pl-md-0">
-                    <h4 class="mt-0">Fingerprint</h4>
-                    <p>Melakukan identifikasi pola fingerprint dengan python 3.7 dan PIL</p>
-                    <a href="fingerprint/index.html" class="stretched-link">details</a>
-                </div>
-            </div>
-            <br>
-        </div>
-    </div>
-
-    <!-- comvis -->
-    <br id="comvis">
-    <div>
-        <div class="container" style="margin-top: 80px; margin-bottom: 80px;">
-            <h1 class="text-info">Computer Vision</h1>
-            <hr>
-            <br>
-            <!-- tugas comvis 1 -->
-            <div class="row no-gutters bg-light position-relative">
-                <div class="col-md-6 mb-md-0 p-md-4">
-                    <img src="comvis/face/-40.png" class="w-100 rounded-lg" alt="comvis_tugas_1">
-                </div>
-                <div class="col-md-6 position-static p-4 pl-md-0">
-                    <h4 class="mt-0">Brightness Effect - Face Detection</h4>
-                    <p>Mengetahui apakah suatu perubahan brightness akan mempengaruhi kecepatan dan deteksi pada wajah.
-                        Menggunakan deteksi Haar Cascade</p>
-                    <a href="comvis/index.html" class="stretched-link">details</a>
-                </div>
-            </div>
-            <br>
-        </div>
-    </div>
-
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -159,7 +176,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
 </body>
 
 </html>
