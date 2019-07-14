@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Android Volley</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand" href="../index.html#">L200160183</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#embedded">Embedded System</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#biometrics">Biometrics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#comvis">Computer Vision</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="jumbotron bg-info text-light" style="height: 700px;" id="#">
+        <div class="container" style="margin-top: 300px">
+            <h1 style="font-size: 80px;">Mobile Programming</h1>
+            <hr>
+            <h2>Android Volley</h2>
+            <h2>L200160183</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="text-info">Requirement</h1>
+        <hr>
+        <ul>
+            <li>Android Studio</li>
+            <li>ADB</li>
+            <li>Smartphone</li>
+        </ul>
+
+        <h1 class="text-info">Langkah-langkah</h1>
+        <hr>
+        <div class="container">
+            <h4 class="text-info">1. Download Source Code</h4>
+            <p>Download source code pada halaman <a
+                    href="https://www.androidtutorialpoint.com/networking/android-volley-tutorial/">ini</a></p>
+            <h4 class="text-info">2. Buat github io yang nantinya akan dibuat menjadi server</h4>
+            <h4 class="text-info">3. Isi github io seperti pada gambar dibawah, anda dapat mengambilnya <a
+                    href="https://github.com/L200160183/l200160183.github.io/tree/master/android/api">disini.</a>
+            </h4>
+            <center><img src="img/io.png" alt="io"></center>
+            <p>Isian folder tersebut sebagai berikut : <br>
+                <b>/image diisi dengan gambar tanpa diberi ekstensi</b>
+                <b>/jsonarray diisi dengan file index.html dengan isian</b>
+                <pre class="bg-light container">
+                    <code>
+[{"Nama":"Muhammad Mu'tashim Billah","NIM":"L200160183","Prodi":"Informatika"},{"Nama":"Muhammad Mu'tashim Billah","NIM":"L200160183","Prodi":"Informatika"}]
+                    </code>
+                </pre>
+                <b>/jsonobject diisi dengan file index.html dengan isian</b>
+                <pre class="bg-light container">
+                    <code>
+{"Nama":"Muhammad Mu'tashim Billah","NIM":"L200160183","Prodi":"Informatika"}     
+                    </code>
+                </pre>        
+                <b>/string diisi dengan file index.html dengan isian</b>
+                <pre class="bg-light container">
+                    <code>
+Muhammad Mu'tashim Billah (L200160183)    
+                    </code>
+                </pre>  
+            </p>
+            <h4 class="text-info">4. Import source code ke android studio, jangan lupa set SDK sesuai dengan android yang dimiliki</h4>
+            <h4 class="text-info">5. Ubah pada MainActivity.java</h4>
+            <center><img src="img/Inkedvolley_LI.jpg" alt="Volley"></center>
+
+            <h4 class="text-info">6. Compile apk dan install pada handphone</h4>
+
+        <h3 class="text-info">Hasil</h3>
+        <br>
+        <center>
+            <video controls="">
+                <source src="vid/2019_07_14_23_43_02.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </center>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
